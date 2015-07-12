@@ -8,6 +8,8 @@ Router.configure({
 
 var publicRoutes = [
 	"home_public",
+	"register_as",
+	"register_associate",
 	"login",
 	"register",
 	"verify_email",
@@ -186,6 +188,8 @@ Router.onBeforeAction(Router.ensureGranted, {only: freeRoutes}); // yes, route f
 Router.map(function () {
 	
 	this.route("home_public", {path: "/", controller: "HomePublicController"});
+	this.route("register_as", {path: "/register_as", controller: "RegisterAsController"});
+	this.route("register_associate", {path: "/register_associate", controller: "RegisterAssociateController"});
 	this.route("login", {path: "/login", controller: "LoginController"});
 	this.route("register", {path: "/register", controller: "RegisterController"});
 	this.route("verify_email", {path: "/verify_email/:verifyEmailToken", controller: "VerifyEmailController"});

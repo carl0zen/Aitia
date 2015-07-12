@@ -3,7 +3,7 @@
     "title": "Aitia",
     "meta_title": "Aitia",
     "meta_description": "Meteor Kitchen - example application",
-    "theme": "bootswatch-cerulean",
+    "theme": "bootswatch-paper",
 
     "roles": [ "admin", "user", "blocked", "associate" ],
     "default_role": "user",
@@ -16,67 +16,114 @@
     "login_with_facebook": true,
 
     "collections": [
-        {
-          "name": "associate",
-          "roles_allowed_to_read": ["admin", "associate", "user"],
-          "roles_allowed_to_insert": "associate",
-          "roles_allowed_to_update": ["admin", "associate"],
-          "fields": [
-            { "name": "name", "title": "Nombre", "required": true },
-            { "name": "phone", "title": "Teléfono", "default": "-", "required": true },
-            { "name": "email", "title": "E-mail", "type": "email", "required": true},
-            { "name": "sex", "title": "Sexo", "type": "string" },
-            { "name": "dob", "title": "Fecha de Nacimiento", "type": "date" },
-            { "name": "phoneType", "title": "Tipo de teléfono", "type": "string" },
-            { "name": "street", "title": "Calle", "type": "string" },
-            { "name": "city", "title": "Ciudad", "type": "string" },
-            { "name": "state", "title": "Estado", "type": "string" },
-            {
-              "name": "postcode",
-              "title": "Código Postal",
-              "type": "int",
-
-            },
-            { "name":
-                "accept_terms",
-                "title": "E-mail",
-                "type": "bool",
-                "required": true,
-
-            },
-            {
-              "name": "why_join",
-              "title": "E-mail",
-              "type": "string"
-            }
-          ]
-        }
-      ]
+      {
+        "name": "associates",
+        "roles_allowed_to_read": ["admin", "associate", "user"],
+        "roles_allowed_to_insert": "associate",
+        "roles_allowed_to_update": ["admin", "associate"],
+        "fields": [
+          { "name": "name", "title": "Nombre", "required": true },
+          { "name": "phone", "title": "Teléfono", "default": "-", "required": true },
+          { "name": "email", "title": "E-mail", "type": "email", "required": true},
+          { "name": "sex", "title": "Sexo", "type": "string" },
+          { "name": "dob", "title": "Fecha de Nacimiento", "type": "date" },
+          { "name": "phoneType", "title": "Tipo de teléfono", "type": "string" },
+          { "name": "street", "title": "Calle", "type": "string" },
+          { "name": "city", "title": "Ciudad", "type": "string" },
+          { "name": "state", "title": "Estado", "type": "string" },
+          { "name": "postcode", "title": "Código Postal", "type": "int" },
+          { "name": "accept_terms", "title": "E-mail", "type": "bool", "required": true},
+          { "name": "why_join", "title": "E-mail", "type": "string" }
+        ]
+      }
     ],
 
     "public_zone": {
       "pages": [
         {
           "name": "home_public",
-          "title": "Aitia",
           "components": [
             {
-              "name": "home_jumbotron",
-              "class": "col-md-6;",
-              "title": "Aitia para todos",
+              "name": "ask_for_help",
+              "title": "¿Quieres trabajar?",
               "type": "jumbotron",
               "text": "Trabajo para todos",
-              "button_title": "Asociate",
-              "button_route": "login"
+              "button_title": "Solicita Acceso",
+              "button_route": "register_associate"
+            },
+            {
+              "name": "how_it_works",
+              "type": "div",
+              "title": "Como funciona",
+              "class": "row",
+              "components": [
+                {
+                    "name": "example_column_1",
+                    "type": "jumbotron",
+                    "class": "col-md-4",
+                    "text": "Busca lo que necesitas",
+                    "components": [
+                    ]
+                },
+                {
+                    "name": "example_column_2",
+                    "type": "jumbotron",
+                    "class": "col-md-4",
+                    "text": "Elige un ayudante",
+                    "components": [
+                    ]
+                },
+                {
+                    "name": "example_column_3",
+                    "type": "jumbotron",
+                    "class": "col-md-4",
+                    "text": "Relájate",
+                    "components": [
+                    ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "register_as",
+          "components": [
+            {
+              "name": "home_jumbotron2",
+              "class": "col-md-6",
+              "title": "Quiero trabajar",
+              "type": "jumbotron",
+              "text": "Trabajo para todos",
+              "button_title": "Asociarme",
+              "button_route": "register_associate"
             },
             {
               "name": "home_jumbotron",
               "class": "col-md-6",
-              "title": "Aitia para todos",
+              "title": "Necesito Apoyo",
               "type": "jumbotron",
-              "text": "Trabajo para todos",
-              "button_title": "Asociate",
-              "button_route": "login"
+              "text": "Si necesitas que te ayuden con algo",
+              "button_title": "Solicitar",
+              "button_route": "register_user"
+            }
+          ]
+        },
+        {
+          "name": "register_associate",
+          "components": [
+            {
+              "name": "ask_for_help",
+              "title": "Te gustaría trabajar?",
+              "type": "form",
+              "mode": "insert",
+              "title": "New Associate",
+              "query": {
+                  "name": "associate",
+                  "collection": "associates",
+                  "filter": {}
+              },
+              "submit_route": "home_public",
+              "cancel_route": "home_public"
             }
           ]
         },
@@ -125,9 +172,7 @@
           "class": "nav navbar-nav",
           "dest_selector": "#menu",
           "items": [
-            { "title": "Home", "route": "home_public" },
-            { "title": "About", "route": "about" },
-            { "title": "Contact", "route": "contact" }
+            { "title": "Como funciona", "route": "home_public" }
           ]
         },
 
@@ -136,7 +181,7 @@
           "class": "nav navbar-nav navbar-right",
           "dest_selector": "#menu",
           "items": [
-            { "title": "Register", "route": "register" },
+            { "title": "Suscríbete", "route": "register" },
             { "title": "Login", "route": "login" }
           ]
         }

@@ -179,7 +179,7 @@ Meteor.methods({
 });
 
 Accounts.onCreateUser(function (options, user) {
-	user.roles = ["user"];
+	user.roles = ["guest"];
 
 	if(options.profile) {
 		user.profile = options.profile;

@@ -10,34 +10,67 @@ Template.HomePublic.helpers({
 	
 });
 
-Template.HomePublicHomeJumbotron.rendered = function() {
+Template.HomePublicAskForHelp.rendered = function() {
 	
 };
 
-Template.HomePublicHomeJumbotron.events({
+Template.HomePublicAskForHelp.events({
 	"click #jumbotron-button": function(e, t) {
 		e.preventDefault();
-		Router.go("login", {});
+		Router.go("register_associate", {});
 	}
 	
 });
 
-Template.HomePublicHomeJumbotron.helpers({
+Template.HomePublicAskForHelp.helpers({
 	
 });
 
-Template.HomePublicHomeJumbotron.rendered = function() {
+
+Template.HomePublicExampleColumn1.rendered = function() {
 	
 };
 
-Template.HomePublicHomeJumbotron.events({
+Template.HomePublicExampleColumn1.events({
 	"click #jumbotron-button": function(e, t) {
 		e.preventDefault();
-		Router.go("login", {});
+		Router.go("", {});
 	}
 	
 });
 
-Template.HomePublicHomeJumbotron.helpers({
+Template.HomePublicExampleColumn1.helpers({
+	
+});
+
+Template.HomePublicExampleColumn2.rendered = function() {
+	
+};
+
+Template.HomePublicExampleColumn2.events({
+	"click #jumbotron-button": function(e, t) {
+		e.preventDefault();
+		Router.go("", {});
+	}
+	
+});
+
+Template.HomePublicExampleColumn2.helpers({
+	
+});
+
+Template.HomePublicExampleColumn3.rendered = function() {
+	
+};
+
+Template.HomePublicExampleColumn3.events({
+	"click #jumbotron-button": function(e, t) {
+		e.preventDefault();
+		Router.go("", {});
+	}
+	
+});
+
+Template.HomePublicExampleColumn3.helpers({
 	
 });

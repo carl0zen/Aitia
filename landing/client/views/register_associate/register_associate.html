@@ -1,0 +1,191 @@
+<template name="RegisterAssociate">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> RegisterAssociateAskForHelp}}
+	</div>
+</template>
+
+<template name="RegisterAssociateAskForHelp">
+	<div class="">
+		<h2 id="component-title">
+			New Associate
+		</h2>
+		<form id="form" role="form">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}		
+		
+			{{#if infoMessage}}
+			<div class="alert alert-success">
+				{{infoMessage}}
+			</div>
+			{{/if}}
+			<div class="form-group  field-name">
+				<label for="name">
+					Nombre
+				</label>
+				<div class="input-div">
+					<input type="text" name="name" value="" class="form-control" autofocus="autofocus" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-phone">
+				<label for="phone">
+					Teléfono
+				</label>
+				<div class="input-div">
+					<input type="text" name="phone" value="-" class="form-control" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-email">
+				<label for="email">
+					E-mail
+				</label>
+				<div class="input-div">
+					<input type="text" name="email" value="" class="form-control" required="required" data-type="email">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-sex">
+				<label for="sex">
+					Sexo
+				</label>
+				<div class="input-div">
+					<input type="text" name="sex" value="" class="form-control" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-dob">
+				<label for="dob">
+					Fecha de Nacimiento
+				</label>
+				<div class="input-div">
+					<input type="text" name="dob" value="" class="form-control" data-type="date">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-phone-type">
+				<label for="phoneType">
+					Tipo de teléfono
+				</label>
+				<div class="input-div">
+					<input type="text" name="phoneType" value="" class="form-control" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-street">
+				<label for="street">
+					Calle
+				</label>
+				<div class="input-div">
+					<input type="text" name="street" value="" class="form-control" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-city">
+				<label for="city">
+					Ciudad
+				</label>
+				<div class="input-div">
+					<input type="text" name="city" value="" class="form-control" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-state">
+				<label for="state">
+					Estado
+				</label>
+				<div class="input-div">
+					<input type="text" name="state" value="" class="form-control" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-postcode">
+				<label for="postcode">
+					Código Postal
+				</label>
+				<div class="input-div">
+					<input type="text" name="postcode" value="" class="form-control" data-type="int">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-accept_terms">
+				<div class="input-div" data-required="true">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="" name="accept_terms" data-type="bool">
+							¿Estas de acuerdo en asistir a una cita para una orientación?
+						</label>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-why_join">
+				<label for="why_join">
+					Porque estas interesado en formar parte
+				</label>
+				<div class="input-div">
+					<input type="text" name="why_join" value="" class="form-control" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="submit-div">
+					<button id="form-submit-button" class="btn btn-success" type="submit">
+						<span class="fa fa-check">
+						</span>
+						Save
+					</button>
+					<a href="#" id="form-cancel-button" class="btn btn-default">
+						Cancel
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+
