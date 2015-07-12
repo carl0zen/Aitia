@@ -44,12 +44,12 @@
           "name": "home_public",
           "components": [
             {
-              "name": "ask_for_help",
+              "name": "register_associate",
               "title": "¿Quieres trabajar?",
               "type": "jumbotron",
               "text": "Trabajo para todos",
-              "button_title": "Solicita Acceso",
-              "button_route": "register_associate"
+              "button_title": "Solicita AccesoSSSS",
+              "button_route": "register"
             },
             {
               "name": "how_it_works",

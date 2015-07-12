@@ -106,7 +106,7 @@
               type: "jumbotron"
               text: "Trabajo para todos"
               button_title: "Solicita Acceso"
-              button_route: "register_associate"
+              button_route: register
             -
               name: "how_it_works"
               type: "div"
