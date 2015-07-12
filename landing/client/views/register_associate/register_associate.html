@@ -13,7 +13,7 @@
 <template name="RegisterAssociateAskForHelp">
 	<div class="">
 		<h2 id="component-title">
-			New Associate
+			Registro de Asociado
 		</h2>
 		<form id="form" role="form">
 			{{#if errorMessage}}
@@ -33,6 +33,18 @@
 				</label>
 				<div class="input-div">
 					<input type="text" name="name" value="" class="form-control" autofocus="autofocus" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-last_name">
+				<label for="last_name">
+					Apellido
+				</label>
+				<div class="input-div">
+					<input type="text" name="last_name" value="" class="form-control" required="required">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -68,7 +80,14 @@
 					Sexo
 				</label>
 				<div class="input-div">
-					<input type="text" name="sex" value="" class="form-control" data-type="string">
+					<select class="form-control" name="sex" data-type="string">
+						<option value="Hombre" selected>
+							Hombre
+						</option>
+						<option value="Mujer">
+							Mujer
+						</option>
+					</select>
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -80,7 +99,13 @@
 					Fecha de Nacimiento
 				</label>
 				<div class="input-div">
-					<input type="text" name="dob" value="" class="form-control" data-type="date">
+					<div class="input-group date">
+						<input type="text" name="dob" value="" class="form-control">
+						<span class="input-group-addon">
+							<i class="fa fa-calendar">
+							</i>
+						</span>
+					</div>
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -92,7 +117,20 @@
 					Tipo de teléfono
 				</label>
 				<div class="input-div">
-					<input type="text" name="phoneType" value="" class="form-control" data-type="string">
+					<select class="form-control" name="phoneType" data-type="telephone">
+						<option value="android" selected>
+							android
+						</option>
+						<option value="iphone">
+							iphone
+						</option>
+						<option value="sin smartphone">
+							sin smartphone
+						</option>
+						<option value="otro">
+							otro
+						</option>
+					</select>
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -104,7 +142,7 @@
 					Calle
 				</label>
 				<div class="input-div">
-					<input type="text" name="street" value="" class="form-control" data-type="string">
+					<input type="text" name="street" value="" class="form-control">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -116,7 +154,7 @@
 					Ciudad
 				</label>
 				<div class="input-div">
-					<input type="text" name="city" value="" class="form-control" data-type="string">
+					<input type="text" name="city" value="" class="form-control">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -128,7 +166,7 @@
 					Estado
 				</label>
 				<div class="input-div">
-					<input type="text" name="state" value="" class="form-control" data-type="string">
+					<input type="text" name="state" value="" class="form-control">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -140,7 +178,7 @@
 					Código Postal
 				</label>
 				<div class="input-div">
-					<input type="text" name="postcode" value="" class="form-control" data-type="int">
+					<input type="text" name="postcode" value="" class="form-control" data-type="integer">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -166,7 +204,7 @@
 					Porque estas interesado en formar parte
 				</label>
 				<div class="input-div">
-					<input type="text" name="why_join" value="" class="form-control" data-type="string">
+					<textarea class="form-control" name="why_join"></textarea>
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">

@@ -27,8 +27,13 @@
           - "associate"
         fields:
           -
-            name: "name"
-            title: "Nombre"
+            name: name
+            title: Nombre
+            required: true
+            exportable: true
+          -
+            name: last_name
+            title: Apellido
             required: true
             exportable: true
           -
@@ -46,32 +51,36 @@
           -
             name: "sex"
             title: "Sexo"
+            input: select
             type: "string"
+            input_items: ["Hombre", "Mujer"]
             exportable: true
           -
             name: "dob"
             title: "Fecha de Nacimiento"
-            type: "date"
+            input: "datepicker"
           -
             name: "phoneType"
             title: "Tipo de teléfono"
-            type: "string"
+            input: select
+            type: telephone
+            input_items: ["android", "iphone", "sin smartphone", "otro"]
           -
             name: "street"
             title: "Calle"
-            type: "string"
+            input: "text"
           -
             name: "city"
             title: "Ciudad"
-            type: "string"
+            input: "text"
           -
             name: "state"
             title: "Estado"
-            type: "string"
+            input: "text"
           -
             name: "postcode"
             title: "Código Postal"
-            type: "int"
+            type: "integer"
           -
             name: "accept_terms"
             title: "¿Estas de acuerdo en asistir a una cita para una orientación?"
@@ -83,7 +92,9 @@
           -
             name: "why_join"
             title: "Porque estas interesado en formar parte"
-            type: "string"
+            input: textarea
+            type: string
+
     public_zone:
       pages:
         -
@@ -144,15 +155,20 @@
           components:
             -
               name: "ask_for_help"
-              title: "New Associate"
+              title: Registro de Asociado
               type: "form"
               mode: "insert"
               query:
                 name: "associate"
                 collection: "associates"
                 filter: {}
-              submit_route: "home_public"
+              submit_route: "thanks_associate"
               cancel_route: "home_public"
+        -
+          name: thanks_associate
+          title: Gracias por Registrarte
+          type: jumbotron
+          text: Nosotros nos pondremos en contacto contigo para agendar nuestra orientación
         -
           name: "login"
           template: "login"

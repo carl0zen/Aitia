@@ -10,6 +10,7 @@ var publicRoutes = [
 	"home_public",
 	"register_as",
 	"register_associate",
+	"thanks_associate",
 	"login",
 	"register",
 	"verify_email",
@@ -190,6 +191,7 @@ Router.map(function () {
 	this.route("home_public", {path: "/", controller: "HomePublicController"});
 	this.route("register_as", {path: "/register_as", controller: "RegisterAsController"});
 	this.route("register_associate", {path: "/register_associate", controller: "RegisterAssociateController"});
+	this.route("thanks_associate", {path: "/thanks_associate", controller: "ThanksAssociateController"});
 	this.route("login", {path: "/login", controller: "LoginController"});
 	this.route("register", {path: "/register", controller: "RegisterController"});
 	this.route("verify_email", {path: "/verify_email/:verifyEmailToken", controller: "VerifyEmailController"});

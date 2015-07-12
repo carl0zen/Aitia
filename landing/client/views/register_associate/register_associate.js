@@ -67,7 +67,7 @@ Template.RegisterAssociateAskForHelp.events({
 				}
 			}
 
-			Router.go("home_public", {});
+			Router.go("thanks_associate", {});
 		}
 
 		function errorAction(msg) {
