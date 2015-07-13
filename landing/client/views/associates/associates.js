@@ -31,7 +31,7 @@ var AssociatesViewItems = function(cursor) {
 	} else {
 		searchString = searchString.replace(".", "\\.");
 		var regEx = new RegExp(searchString, "i");
-		var searchFields = ["name", "last_name", "phone", "email", "name", "skills", "sex", "dob", "phoneType", "street", "city", "state", "postcode", "accept_terms", "why_join"];
+		var searchFields = ["name", "last_name", "phone", "email", "skills", "sex", "dob", "phoneType", "street", "city", "state", "postcode", "accept_terms", "why_join"];
 		filtered = _.filter(raw, function(item) {
 			var match = false;
 			_.each(searchFields, function(field) {
@@ -61,7 +61,7 @@ var AssociatesViewItems = function(cursor) {
 
 var AssociatesViewExport = function(cursor, fileType) {
 	var data = AssociatesViewItems(cursor);
-	var exportFields = ["name", "last_name", "phone", "email", "name", "skills", "sex", "accept_terms"];
+	var exportFields = ["name", "last_name", "phone", "email", "skills", "sex", "accept_terms"];
 
 	var str = convertArrayOfObjects(data, exportFields, fileType);
 

@@ -132,7 +132,7 @@ Template.UsersView.events({
 
 	"click #dataview-insert-button": function(e, t) {
 		e.preventDefault();
-		Router.go("admin.users.insert", {});
+		Router.go("register", {});
 	},
 
 	"click #dataview-export-default": function(e, t) {
