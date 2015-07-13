@@ -114,10 +114,17 @@
 
 <template name="PrivateLayoutLeftMenu">
 	<ul id="menu-items" class="nav navbar-nav">
-		<li id="menu-item-simple" class="{{menuItemClass 'home_private'}}">
-			<a href="{{pathFor 'home_private'}}">
+		<li id="menu-item-simple" class="{{menuItemClass 'admin'}}">
+			<a href="{{pathFor 'admin'}}">
 				<span class="item-title">
-					Home
+					Admin
+				</span>
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'dashboard'}}">
+			<a href="{{pathFor 'dashboard'}}">
+				<span class="item-title">
+					Dashboard
 				</span>
 			</a>
 		</li>
@@ -128,35 +135,22 @@
 				</span>
 			</a>
 		</li>
-		<li id="menu-item-simple" class="{{menuItemClass 'users'}}">
-			<a href="{{pathFor 'users'}}">
-				<span class="item-title">
-					Users
-				</span>
-			</a>
-		</li>
 	</ul>
 </template>
 
 <template name="PrivateLayoutRightMenu">
 	<ul id="menu-items" class="nav navbar-nav navbar-right">
-		<li id="menu-item-simple" class="{{menuItemClass 'admin'}}">
-			<a href="{{pathFor 'admin'}}">
+		<li id="menu-item-simple" class="{{menuItemClass 'user.users.details'}}">
+			<a href="{{pathFor 'user.users.details'}}">
 				<span class="item-title">
-					Admin
-				</span>
-			</a>
-		</li>
-		<li id="menu-item-simple" class=".item-title">
-			<a href="#">
-				<span class="item-title">
+					{{> avatar userId=userId size='extra-small' shape='circle'}}
 				</span>
 			</a>
 		</li>
 		<li id="menu-item-dropdown" class="dropdown ">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<span class="item-title">
-					{{userFullName}} <img src='http://placehold.it/30x30' />
+					{{userFullName}}
 				</span>
 				<b class="caret">
 				</b>

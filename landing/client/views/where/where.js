@@ -9,4 +9,3 @@ Template.Where.events({
 Template.Where.helpers({
 	
 });
-

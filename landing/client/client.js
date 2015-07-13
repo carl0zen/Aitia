@@ -3,6 +3,7 @@ this.Helpers = {};
 
 Meteor.startup(function() {
 	
+GoogleMaps.load();
 });
 
 App.logout = function() {

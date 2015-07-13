@@ -12,7 +12,8 @@ var publicRoutes = [
 	"register",
 	"verify_email",
 	"forgot_password",
-	"reset_password"
+	"reset_password",
+	"contact"
 ];
 
 var privateRoutes = [
@@ -26,6 +27,10 @@ var privateRoutes = [
 	"admin.users.details",
 	"admin.users.insert",
 	"admin.users.edit",
+	"admin.associates",
+	"admin.associates.details",
+	"admin.associates.insert",
+	"admin.associates.edit",
 	"user_settings",
 	"user_settings.profile",
 	"user_settings.change_pass",
@@ -42,6 +47,10 @@ var roleMap = [
 	{ route: "admin.users.details",	roles: ["admin"] },
 	{ route: "admin.users.insert",	roles: ["admin"] },
 	{ route: "admin.users.edit",	roles: ["admin"] },
+	{ route: "admin.associates",	roles: ["admin"] },
+	{ route: "admin.associates.details",	roles: ["admin"] },
+	{ route: "admin.associates.insert",	roles: ["admin"] },
+	{ route: "admin.associates.edit",	roles: ["admin"] },
 	{ route: "user_settings",	roles: ["user","admin"] },
 	{ route: "user_settings.profile",	roles: ["user","admin"] },
 	{ route: "user_settings.change_pass",	roles: ["user","admin"] }
@@ -194,6 +203,7 @@ Router.map(function () {
 	this.route("verify_email", {path: "/verify_email/:verifyEmailToken", controller: "VerifyEmailController"});
 	this.route("forgot_password", {path: "/forgot_password", controller: "ForgotPasswordController"});
 	this.route("reset_password", {path: "/reset_password/:resetPasswordToken", controller: "ResetPasswordController"});
+	this.route("contact", {path: "/contact", controller: "ContactController"});
 	this.route("dashboard", {path: "/dashboard", controller: "DashboardController"});
 	this.route("register_associate", {path: "/register_associate", controller: "RegisterAssociateController"});
 	this.route("post_need", {path: "/post_need", controller: "PostNeedController"});
@@ -204,6 +214,10 @@ Router.map(function () {
 	this.route("admin.users.details", {path: "/admin/users/details/:userId", controller: "AdminUsersDetailsController"});
 	this.route("admin.users.insert", {path: "/admin/users/insert", controller: "AdminUsersInsertController"});
 	this.route("admin.users.edit", {path: "/admin/users/edit/:userId", controller: "AdminUsersEditController"});
+	this.route("admin.associates", {path: "/admin/associates", controller: "AdminAssociatesController"});
+	this.route("admin.associates.details", {path: "/admin/associates/details/:userId", controller: "AdminAssociatesDetailsController"});
+	this.route("admin.associates.insert", {path: "/admin/associates/insert", controller: "AdminAssociatesInsertController"});
+	this.route("admin.associates.edit", {path: "/admin/associates/edit/:userId", controller: "AdminAssociatesEditController"});
 	this.route("user_settings", {path: "/user_settings", controller: "UserSettingsController"});
 	this.route("user_settings.profile", {path: "/user_settings/profile", controller: "UserSettingsProfileController"});
 	this.route("user_settings.change_pass", {path: "/user_settings/change_pass", controller: "UserSettingsChangePassController"});

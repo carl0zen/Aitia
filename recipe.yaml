@@ -6,43 +6,46 @@
     theme: "bootswatch-paper"
 
     roles:
-      - guest
-      - admin
-      - user
-      - associate
+      - "guest"
+      - "admin"
+      - "user"
+      - "associate"
     default_role: user
     collections:
       - name: associates
         roles_allowed_to_read:
-          - admin
-          - associate
+          - "admin"
+          - "associate"
           - user
-        roles_allowed_to_insert:
-          - associate
-          - admin
+        roles_allowed_to_insert: "associate"
         roles_allowed_to_update:
           - admin
           - associate
         fields:
-          - name: name
+          -
+            name: name
             title: Nombre
             required: true
             exportable: true
-          - name: last_name
+          -
+            name: last_name
             title: Apellido
             required: true
             exportable: true
-          - name: "phone"
+          -
+            name: phone
             title: "Teléfono"
             default: "-"
             required: true
             exportable: true
-          - name: "email"
+          -
+            name: "email"
             title: "E-mail"
             type: "email"
             required: true
             exportable: true
-          - name: skills
+          -
+            name: skills
             title: Habilidades
             required: true
             exportable: true
@@ -56,41 +59,50 @@
               - Investigación
               - Diseño
               - Consultoría
-          - name: "sex"
+          -
+            name: "sex"
             title: "Sexo"
             input: select
             type: "string"
             input_items: ["Hombre", "Mujer"]
             exportable: true
-          - name: "dob"
+          -
+            name: "dob"
             title: "Fecha de Nacimiento"
             input: "datepicker"
-          - name: "phoneType"
+          -
+            name: "phoneType"
             title: "Tipo de teléfono"
             input: select
             type: telephone
             input_items: ["android", "iphone", "sin smartphone", "otro"]
-          - name: "street"
+          -
+            name: "street"
             title: "Calle"
             input: "text"
-          - name: "city"
+          -
+            name: "city"
             title: "Ciudad"
             input: "text"
-          - name: "state"
+          -
+            name: "state"
             title: "Estado"
             input: "text"
-          - name: "postcode"
+          -
+            name: "postcode"
             title: "Código Postal"
             type: "integer"
-          - name: "accept_terms"
+          -
+            name: "accept_terms"
             title: "¿Estas de acuerdo en asistir a una cita para una orientación?"
             input: checkbox
             display_helper: booleanToYesNo
             type: bool
             required: true
-            exportable: false
-          - name: why_join
-            title: Porque estas interesado en formar parte
+            exportable: true
+          -
+            name: "why_join"
+            title: "Porque estas interesado en formar parte"
             input: textarea
             type: string
       - name: needs
@@ -124,7 +136,7 @@
 
     public_zone:
       pages:
-        - name: home_public
+        - name: "home_public"
           components:
             - name: ask_for_help
               title: Todos lo que necesitas cerca de tí
@@ -155,34 +167,62 @@
                   class: "col-md-4"
                   text: "Relájate"
                   components: []
-        - name: login
-          template: login
 
-        - name: register
-          template: register
+        - name: "login"
+          template: "login"
 
-        - name: verify_email
-          template: verify_email
+        - name: "register"
+          template: "register"
+
+        - name: "verify_email"
+          template: "verify_email"
+
           route_params:
-            - verifyEmailToken
+            - "verifyEmailToken"
 
-        - name: forgot_password
-          template: forgot_password
+        - name: "forgot_password"
+          template: "forgot_password"
 
-        - name: reset_password
-          template: reset_password
+        - name: "reset_password"
+          template: "reset_password"
           route_params:
-            - resetPasswordToken
+            - "resetPasswordToken"
+
+        - name: "contact"
+          title: "Aitia Contact"
+          components:
+            -
+              name: "div_lorem"
+              type: "div"
+              class: "row"
+              components:
+                -
+                  name: "div_lorem1"
+                  type: "div"
+                  class: "col-md-4"
+                  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium molestias et laboriosam atque, reprehenderit ipsa, laborum accusamus consectetur ut quo, totam recusandae, animi temporibus dolor repudiandae iste tempore in corrupti?"
+                -
+                  name: "div_lorem2"
+                  type: "div"
+                  class: "col-md-4"
+                  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium molestias et laboriosam atque, reprehenderit ipsa, laborum accusamus consectetur ut quo, totam recusandae, animi temporibus dolor repudiandae iste tempore in corrupti?"
+                -
+                  name: "div_lorem3"
+                  type: "div"
+                  class: "col-md-4"
+                  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium molestias et laboriosam atque, reprehenderit ipsa, laborum accusamus consectetur ut quo, totam recusandae, animi temporibus dolor repudiandae iste tempore in corrupti?"
 
       menus:
-        - name: "left_menu"
+        -
+          name: "left_menu"
           class: "nav navbar-nav"
           dest_selector: "#menu"
           items:
             -
               title: "Como funciona"
               route: "home_public"
-        - name: "right_menu"
+        -
+          name: "right_menu"
           class: "nav navbar-nav navbar-right"
           dest_selector: "#menu"
           items:
@@ -211,12 +251,14 @@
               button_route: post_need
         - name: register_associate
           components:
-            - name: intro_associate
+            -
+              name: intro_associate
               type: jumbotron
               title: Asociate
               class: col-md-6
               text: Nosotros nos encargamos de conectarte con tus clientes antes que nadie
-            - name: "ask_for_help"
+            -
+              name: "ask_for_help"
               title: Forma de solicitud
               type: "form"
               class: col-md-6
@@ -225,8 +267,8 @@
                 name: "associate"
                 collection: "associates"
                 filter: {}
-              submit_route: "associates"
-              cancel_route: "home_private"
+              submit_route: thanks_associate
+              cancel_route: dashboard
         - name: post_need
           components:
             -
@@ -251,21 +293,19 @@
           title: Ubícate en el mapa
           type: jumbotron
           text: "{{> googleMap}}"
-          components:
-            - name: google_map
-              type: custom_component
-              html: "{{> googleMap name='exampleMap' }}"
-
         - name: thanks_associate
-          title: Gracias por Registrarte
-          type: jumbotron
-          text: Nosotros nos pondremos en contacto contigo para agendar nuestra orientación
-        -
-          name: "admin"
+          components:
+            - name: thanks_jumbotron
+              title: Gracias por Registrarte
+              type: jumbotron
+              text: Nosotros nos pondremos en contacto contigo para agendar nuestra orientación
+              button_title: Ok
+              button_route: dashboard
+        - name: admin
           roles:
             - "admin"
           pages:
-            - name: "users"
+            - name: users
               components:
                 -
                   name: "view"
@@ -296,6 +336,121 @@
                   details_route_params:
                     -
                       name: "userId"
+                      value: "this._id"
+              pages:
+              - name: details
+                route_params:
+                  - userId
+                components:
+                  - name: details_form
+                    type: form
+                    mode: read_only
+                    title: User details
+                    query:
+                      name: admin_user
+                      collection: users
+                      filter:
+                        _id: ':userId'
+                    fields:
+                      - name: profile.name
+                        title: Name
+                      - name: profile.email
+                        title: E-mail
+                        type: email
+                      - name: roles
+                        title: Role
+                    close_route: admin.users
+                    back_route: admin.users
+              - name: insert
+                components:
+                  - name: insert_form
+                    type: form
+                    mode: insert
+                    title: Add new user
+                    submit_route: admin.users
+                    cancel_route: admin.users
+                    query:
+                      name: users_null
+                      collection: users
+                      filter:
+                        _id: null
+                    fields:
+                      - name: profile.name
+                        title: Name
+                        required: true
+                      - name: profile.email
+                        title: E-mail
+                        type: email
+                        required: true
+                      - name: password
+                        title: Password
+                        input: password
+                        required: true
+              - name: edit
+                route_params:
+                  - userId
+                components:
+                  - name: edit_form
+                    type: form
+                    mode: update
+                    title: Edit user
+                    submit_route: admin.users
+                    cancel_route: admin.users
+                    query:
+                      name: admin_user
+                      collection: users
+                      filter:
+                        _id: ':userId'
+                    fields:
+                      - name: profile.name
+                        title: Name
+                        required: true
+                      - name: profile.email
+                        title: E-mail
+                        type: email
+                        required: true
+                      - name: roles
+                        type: array
+                        title: Role
+                        input: radio
+                        input_items:
+                          - value: user
+                            title: User
+                          - value: admin
+                            title: Admin
+                          - value: blocked
+                            title: Blocked
+            - name: associates
+              components:
+                -
+                  name: "view"
+                  type: "data_view"
+                  title: "Associates"
+                  text_if_empty: "No associates yet"
+                  query:
+                    name: "admin_associates"
+                    collection: associates
+                    filter: {}
+                  fields:
+                    -
+                      name: "profile.name"
+                      title: "Name"
+                    -
+                      name: "profile.email"
+                      title: "E-mail"
+                    -
+                      name: "roles"
+                      title: "Role"
+                  insert_route: "admin.associates.insert"
+                  edit_route: "admin.associates.edit"
+                  edit_route_params:
+                    -
+                      name: "associateId"
+                      value: "this._id"
+                  details_route: "admin.associates.details"
+                  details_route_params:
+                    -
+                      name: "associateId"
                       value: "this._id"
               pages:
                 -
@@ -403,11 +558,11 @@
               name: "side_menu"
               class: "nav nav-stacked nav-pills"
               items:
-                -
-                  title: "Users"
-                  route: "admin.users"
-        -
-          name: "user_settings"
+                - title: Usuarios
+                  route: admin.users
+                - title: Asociados
+                  route: associates
+        - name: user_settings
           roles:
             - "user"
             - "admin"
@@ -418,40 +573,6 @@
                 -
                   name: "edit_form"
                   type: "form"
-                  mode: "update"
-                  title: "Edit your profile"
-                  submit_route: "user_settings.profile"
-                  query:
-                    name: "current_user_data"
-                    collection: "users"
-                    filter:
-                      _id: "Meteor.userId()"
-                    find_one: true
-                  fields:
-                    -
-                      name: "profile.name"
-                      title: "Name"
-                      required: true
-                    -
-                      name: "profile.email"
-                      title: "E-mail"
-                      type: "email"
-                      required: true
-                    -
-                      name: "profile.facebook"
-                      title: "Facebook URL"
-                    -
-                      name: "profile.google"
-                      title: "Google+ URL"
-                    -
-                      name: "profile.twitter"
-                      title: "Twitter ID"
-                    -
-                      name: "profile.website"
-                      title: "Website URL"
-                -
-                  name: "edit_form"
-                  type: "data_view"
                   mode: "update"
                   title: "Edit your profile"
                   submit_route: "user_settings.profile"
@@ -497,38 +618,33 @@
                 -
                   title: "Change password"
                   route: "user_settings.change_pass"
-        -
-          name: "logout"
-          template: "logout"
+        - name: logout
+          template: logout
       menus:
         -
           name: "left_menu"
           class: "nav navbar-nav"
           dest_selector: "#menu"
           items:
+            - title: Admin
+              route: admin
+
             -
-              title: Home
-              route: home_private
+              title: Dashboard
+              route: dashboard
             -
               title: Asociados
               route: associates
-            -
-              title: Users
-              route: users
         -
           name: "right_menu"
           class: "nav navbar-nav navbar-right"
           dest_selector: "#menu"
           items:
+            - title: "{{> avatar userId=userId size='extra-small' shape='circle'}}"
+              route: user.users.details
+              route_params: userId
             -
-              title: "Admin"
-              route: "admin"
-            -
-              name: avatar
-              type: div
-              class: .item-title
-            -
-              title: "{{userFullName}} <img src='http://placehold.it/30x30' />"
+              title: "{{userFullName}} "
               items:
                 -
                   title: "Settings"
@@ -540,6 +656,7 @@
     footer_text: © Aitia 2015
     login_with_password: true
     login_with_facebook: true
+    client_startup_code: GoogleMaps.load();
     packages:
       meteor:
         - "dburles:google-maps"

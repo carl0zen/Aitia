@@ -1,38 +1,22 @@
 var pageSession = new ReactiveDict();
 
-Template.RegisterAssociate.rendered = function() {
+Template.AdminAssociatesInsert.rendered = function() {
 	
 };
 
-Template.RegisterAssociate.events({
+Template.AdminAssociatesInsert.events({
 	
 });
 
-Template.RegisterAssociate.helpers({
+Template.AdminAssociatesInsert.helpers({
 	
 });
 
-Template.RegisterAssociateIntroAssociate.rendered = function() {
-	
-};
-
-Template.RegisterAssociateIntroAssociate.events({
-	"click #jumbotron-button": function(e, t) {
-		e.preventDefault();
-		Router.go("", {});
-	}
-	
-});
-
-Template.RegisterAssociateIntroAssociate.helpers({
-	
-});
-
-Template.RegisterAssociateAskForHelp.rendered = function() {
+Template.AdminAssociatesInsertInsertForm.rendered = function() {
 	
 
-	pageSession.set("registerAssociateAskForHelpInfoMessage", "");
-	pageSession.set("registerAssociateAskForHelpErrorMessage", "");
+	pageSession.set("adminAssociatesInsertInsertFormInfoMessage", "");
+	pageSession.set("adminAssociatesInsertInsertFormErrorMessage", "");
 
 	$(".input-group.date").each(function() {
 		var format = $(this).find("input[type='text']").attr("data-format");
@@ -60,35 +44,35 @@ Template.RegisterAssociateAskForHelp.rendered = function() {
 	$("input[autofocus]").focus();
 };
 
-Template.RegisterAssociateAskForHelp.events({
+Template.AdminAssociatesInsertInsertForm.events({
 	"submit": function(e, t) {
 		e.preventDefault();
-		pageSession.set("registerAssociateAskForHelpInfoMessage", "");
-		pageSession.set("registerAssociateAskForHelpErrorMessage", "");
+		pageSession.set("adminAssociatesInsertInsertFormInfoMessage", "");
+		pageSession.set("adminAssociatesInsertInsertFormErrorMessage", "");
 
 		var self = this;
 
 		function submitAction(msg) {
-			var registerAssociateAskForHelpMode = "insert";
+			var adminAssociatesInsertInsertFormMode = "insert";
 			if(!t.find("#form-cancel-button")) {
-				switch(registerAssociateAskForHelpMode) {
+				switch(adminAssociatesInsertInsertFormMode) {
 					case "insert": {
 						$(e.target)[0].reset();
 					}; break;
 
 					case "update": {
 						var message = msg || "Saved.";
-						pageSession.set("registerAssociateAskForHelpInfoMessage", message);
+						pageSession.set("adminAssociatesInsertInsertFormInfoMessage", message);
 					}; break;
 				}
 			}
 
-			Router.go("thanks_associate", {});
+			Router.go("admin.users", {});
 		}
 
 		function errorAction(msg) {
 			var message = msg || "Error.";
-			pageSession.set("registerAssociateAskForHelpErrorMessage", message);
+			pageSession.set("adminAssociatesInsertInsertFormErrorMessage", message);
 		}
 
 		validateForm(
@@ -102,7 +86,7 @@ Template.RegisterAssociateAskForHelp.events({
 			function(values) {
 				
 
-				newId = Associates.insert(values, function(e) { if(e) errorAction(e.message); else submitAction(); });
+				Meteor.call("createUserAccount", values, function(e) { if(e) errorAction(e.message); else submitAction(); });
 			}
 		);
 
@@ -113,7 +97,7 @@ Template.RegisterAssociateAskForHelp.events({
 
 		
 
-		Router.go("dashboard", {});
+		Router.go("admin.users", {});
 	},
 	"click #form-close-button": function(e, t) {
 		e.preventDefault();
@@ -129,12 +113,12 @@ Template.RegisterAssociateAskForHelp.events({
 	
 });
 
-Template.RegisterAssociateAskForHelp.helpers({
+Template.AdminAssociatesInsertInsertForm.helpers({
 	"infoMessage": function() {
-		return pageSession.get("registerAssociateAskForHelpInfoMessage");
+		return pageSession.get("adminAssociatesInsertInsertFormInfoMessage");
 	},
 	"errorMessage": function() {
-		return pageSession.get("registerAssociateAskForHelpErrorMessage");
+		return pageSession.get("adminAssociatesInsertInsertFormErrorMessage");
 	}
 	
 });

@@ -6,7 +6,7 @@
 				</div>
 			</div>
 		</div>
-		{{> UserSettingsProfileEditForm}}{{> UserSettingsProfileEditForm}}
+		{{> UserSettingsProfileEditForm}}
 	</div>
 </template>
 
@@ -110,97 +110,5 @@
 			</div>
 		</form>
 	</div>
-</template>
-
-<template name="UserSettingsProfileEditForm">
-	<div id="data_view" class="">
-		<h2 id="component-title">
-			Edit your profile
-		</h2>
-		<form id="dataview-controls" class="form-inline">
-			<div id="dataview-controls-search">
-				{{#if isNotEmpty}}
-				<div id="dataview-controls-search-group" class="form-group">
-					<label class="sr-only" for="search">
-						Search
-					</label>
-					<input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
-					<button type="button" id="dataview-search-button" class="btn btn-primary">
-						<span class="fa fa-search">
-						</span>
-					</button>
-				</div>
-				{{/if}}
-			</div>
-		</form>
-		{{#if isNotEmpty}}	
-			{{#if isNotFound}}
-		<div class="alert alert-warning">
-			"{{searchString}}" not found.
-		</div>
-		{{else}}
-		<div id="dataview-data">
-			{{#if viewAsTable}} {{> UserSettingsProfileEditFormTable}} {{/if}}
-		</div>
-		{{/if}}	
-		{{else}}
-		<div class="alert alert-info">
-			Empty.
-		</div>
-		{{/if}}
-	</div>
-</template>
-
-<template name="UserSettingsProfileEditFormTable">
-	<table id="dataview-table" class="table table-striped">
-		<thead id="dataview-table-header">
-			<tr id="dataview-table-header-row">
-				<th class="th-sortable" data-sort="profile.name">
-					Name
-				</th>
-				<th class="th-sortable" data-sort="profile.email">
-					E-mail
-				</th>
-				<th class="th-sortable" data-sort="profile.facebook">
-					Facebook URL
-				</th>
-				<th class="th-sortable" data-sort="profile.google">
-					Google+ URL
-				</th>
-				<th class="th-sortable" data-sort="profile.twitter">
-					Twitter ID
-				</th>
-				<th class="th-sortable" data-sort="profile.website">
-					Website URL
-				</th>
-			</tr>
-		</thead>
-		<tbody id="dataview-table-items">
-			{{#each tableItems}} {{> UserSettingsProfileEditFormTableItems}} {{/each}}
-		</tbody>
-	</table>
-</template>
-
-<template name="UserSettingsProfileEditFormTableItems">
-	<tr id="dataview-table-items-row">
-		<td>
-			{{profile.name}}
-		</td>
-		<td>
-			{{profile.email}}
-		</td>
-		<td>
-			{{profile.facebook}}
-		</td>
-		<td>
-			{{profile.google}}
-		</td>
-		<td>
-			{{profile.twitter}}
-		</td>
-		<td>
-			{{profile.website}}
-		</td>
-	</tr>
 </template>
 
