@@ -1,0 +1,129 @@
+<template name="PostNeed">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> PostNeedIntroNeeds}}{{> PostNeedAskForHelp}}
+	</div>
+</template>
+
+<template name="PostNeedIntroNeeds">
+	<div class="jumbotron col-md-6">
+		<div id="content" class="container">
+			<h1 id="component-title">
+				Pide Ayuda
+			</h1>
+			<p id="jumbotron-text">
+				Todo lo que necesitas, lo más pronto posible
+			</p>
+		</div>
+	</div>
+</template>
+
+<template name="PostNeedAskForHelp">
+	<div class="col-md-6">
+		<h2 id="component-title">
+			¿Que necesitas en este momento?
+		</h2>
+		<form id="form" role="form">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}		
+		
+			{{#if infoMessage}}
+			<div class="alert alert-success">
+				{{infoMessage}}
+			</div>
+			{{/if}}
+			<div class="form-group  field-need">
+				<label for="need">
+					Describe lo que estas buscando en este momento
+				</label>
+				<div class="input-div">
+					<input type="text" name="need" value="" class="form-control" autofocus="autofocus">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-type">
+				<label for="type">
+					Tipo de necesidad
+				</label>
+				<div class="input-div">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Electricista" name="type" data-type="array">
+							Electricista
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Plomero" name="type" data-type="array">
+							Plomero
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Albañil" name="type" data-type="array">
+							Albañil
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Ayudante Personal" name="type" data-type="array">
+							Ayudante Personal
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Limpieza" name="type" data-type="array">
+							Limpieza
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Investigación" name="type" data-type="array">
+							Investigación
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Diseño" name="type" data-type="array">
+							Diseño
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Consultoría" name="type" data-type="array">
+							Consultoría
+						</label>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="submit-div">
+					<button id="form-submit-button" class="btn btn-success" type="submit">
+						<span class="fa fa-check">
+						</span>
+						Save
+					</button>
+					<a href="#" id="form-cancel-button" class="btn btn-default">
+						Cancel
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+

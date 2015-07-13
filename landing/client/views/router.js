@@ -8,20 +8,18 @@ Router.configure({
 
 var publicRoutes = [
 	"home_public",
-	"register_as",
 	"login",
 	"register",
 	"verify_email",
 	"forgot_password",
-	"reset_password",
-	"contact"
+	"reset_password"
 ];
 
 var privateRoutes = [
-	"home_private",
+	"dashboard",
 	"register_associate",
-	"associates",
-	"users",
+	"post_need",
+	"where",
 	"thanks_associate",
 	"admin",
 	"admin.users",
@@ -135,7 +133,7 @@ Router.ensureLogged = function() {
 		// user is logged in - check role
 		if(!routeGranted(this.route.getName())) {
 			// user is not in allowedRoles - redirect to first granted route
-			var redirectRoute = firstGrantedRoute("home_private");
+			var redirectRoute = firstGrantedRoute("");
 			this.redirect(redirectRoute);
 		} else {
 			this.next();
@@ -149,7 +147,7 @@ Router.ensureNotLogged = function() {
 	}
 
 	if(Meteor.userId()) {
-		var redirectRoute = firstGrantedRoute("home_private");
+		var redirectRoute = firstGrantedRoute("");
 		this.redirect(redirectRoute);
 	}
 	else {
@@ -191,17 +189,15 @@ Router.onBeforeAction(Router.ensureGranted, {only: freeRoutes}); // yes, route f
 Router.map(function () {
 	
 	this.route("home_public", {path: "/", controller: "HomePublicController"});
-	this.route("register_as", {path: "/register_as", controller: "RegisterAsController"});
 	this.route("login", {path: "/login", controller: "LoginController"});
 	this.route("register", {path: "/register", controller: "RegisterController"});
 	this.route("verify_email", {path: "/verify_email/:verifyEmailToken", controller: "VerifyEmailController"});
 	this.route("forgot_password", {path: "/forgot_password", controller: "ForgotPasswordController"});
 	this.route("reset_password", {path: "/reset_password/:resetPasswordToken", controller: "ResetPasswordController"});
-	this.route("contact", {path: "/contact", controller: "ContactController"});
-	this.route("home_private", {path: "/home_private", controller: "HomePrivateController"});
+	this.route("dashboard", {path: "/dashboard", controller: "DashboardController"});
 	this.route("register_associate", {path: "/register_associate", controller: "RegisterAssociateController"});
-	this.route("associates", {path: "/associates", controller: "AssociatesController"});
-	this.route("users", {path: "/users", controller: "UsersController"});
+	this.route("post_need", {path: "/post_need", controller: "PostNeedController"});
+	this.route("where", {path: "/where", controller: "WhereController"});
 	this.route("thanks_associate", {path: "/thanks_associate", controller: "ThanksAssociateController"});
 	this.route("admin", {path: "/admin", controller: "AdminController"});
 	this.route("admin.users", {path: "/admin/users", controller: "AdminUsersController"});

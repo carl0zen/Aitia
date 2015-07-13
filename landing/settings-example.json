@@ -1,0 +1,15 @@
+{
+    "oauth": {
+        "facebook": {
+            "appId": "key",
+            "secret": "key"
+        }
+    },
+
+    "public": {
+    },
+
+    "env": {
+        "MAIL_URL": "key"
+    }
+}

@@ -61,7 +61,7 @@ var AssociatesViewItems = function(cursor) {
 
 var AssociatesViewExport = function(cursor, fileType) {
 	var data = AssociatesViewItems(cursor);
-	var exportFields = ["name", "last_name", "phone", "email", "skills", "sex", "accept_terms"];
+	var exportFields = ["name", "last_name", "phone", "email", "skills", "sex"];
 
 	var str = convertArrayOfObjects(data, exportFields, fileType);
 

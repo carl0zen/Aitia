@@ -1,7 +1,7 @@
 this.Associates = new Mongo.Collection("associates");
 
 this.Associates.userCanInsert = function(userId, doc) {
-	return true;
+	return Users.isInRoles(userId, ["associate","admin"]);
 }
 
 this.Associates.userCanUpdate = function(userId, doc) {

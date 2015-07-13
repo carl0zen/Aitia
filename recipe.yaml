@@ -4,48 +4,45 @@
     meta_title: "Aitia"
     meta_description: "Meteor Kitchen - example application"
     theme: "bootswatch-paper"
+
     roles:
-      - "guest"
-      - "admin"
-      - "user"
-      - "associate"
+      - guest
+      - admin
+      - user
+      - associate
     default_role: user
     collections:
-      -
-        name: "associates"
+      - name: associates
         roles_allowed_to_read:
-          - "admin"
-          - "associate"
-          - "user"
-        roles_allowed_to_insert: "associate"
+          - admin
+          - associate
+          - user
+        roles_allowed_to_insert:
+          - associate
+          - admin
         roles_allowed_to_update:
-          - "admin"
-          - "associate"
+          - admin
+          - associate
         fields:
-          -
-            name: name
+          - name: name
             title: Nombre
             required: true
             exportable: true
-          -
-            name: last_name
+          - name: last_name
             title: Apellido
             required: true
             exportable: true
-          -
-            name: "phone"
+          - name: "phone"
             title: "Teléfono"
             default: "-"
             required: true
             exportable: true
-          -
-            name: "email"
+          - name: "email"
             title: "E-mail"
             type: "email"
             required: true
             exportable: true
-          -
-            name: skills
+          - name: skills
             title: Habilidades
             required: true
             exportable: true
@@ -59,67 +56,83 @@
               - Investigación
               - Diseño
               - Consultoría
-          -
-            name: "sex"
+          - name: "sex"
             title: "Sexo"
             input: select
             type: "string"
             input_items: ["Hombre", "Mujer"]
             exportable: true
-          -
-            name: "dob"
+          - name: "dob"
             title: "Fecha de Nacimiento"
             input: "datepicker"
-          -
-            name: "phoneType"
+          - name: "phoneType"
             title: "Tipo de teléfono"
             input: select
             type: telephone
             input_items: ["android", "iphone", "sin smartphone", "otro"]
-          -
-            name: "street"
+          - name: "street"
             title: "Calle"
             input: "text"
-          -
-            name: "city"
+          - name: "city"
             title: "Ciudad"
             input: "text"
-          -
-            name: "state"
+          - name: "state"
             title: "Estado"
             input: "text"
-          -
-            name: "postcode"
+          - name: "postcode"
             title: "Código Postal"
             type: "integer"
-          -
-            name: "accept_terms"
+          - name: "accept_terms"
             title: "¿Estas de acuerdo en asistir a una cita para una orientación?"
             input: checkbox
             display_helper: booleanToYesNo
             type: bool
             required: true
-            exportable: true
-          -
-            name: "why_join"
-            title: "Porque estas interesado en formar parte"
+            exportable: false
+          - name: why_join
+            title: Porque estas interesado en formar parte
             input: textarea
             type: string
+      - name: needs
+        owner_field: createdBy
+        roles_allowed_to_read: []
+        roles_allowed_to_insert:
+          - user
+          - admin
+        roles_allowed_to_update:
+          - admin
+          - user
+        fields:
+          -
+            name: need
+            title: Describe lo que estas buscando en este momento
+            exportable: true
+          -
+            name: type
+            title: Tipo de necesidad
+            type: array
+            input: checkbox
+            input_items:
+              - Electricista
+              - Plomero
+              - Albañil
+              - Ayudante Personal
+              - Limpieza
+              - Investigación
+              - Diseño
+              - Consultoría
 
     public_zone:
       pages:
-        -
-          name: "home_public"
+        - name: home_public
           components:
-            -
-              name: ask_for_help
-              title: Todos los servicios a domicilio
+            - name: ask_for_help
+              title: Todos lo que necesitas cerca de tí
               type: jumbotron
               text: Recibe la ayuda que necesitas en donde quiera que estes
               button_title: Solicita Acceso
               button_route: login
-            -
-              name: "how_it_works"
+            - name: "how_it_works"
               type: "div"
               title: "Como funciona"
               class: "row"
@@ -142,79 +155,34 @@
                   class: "col-md-4"
                   text: "Relájate"
                   components: []
-        -
-          name: "register_as"
-          components:
-            -
-              name: "home_jumbotron2"
-              class: "col-md-6"
-              title: "Quiero trabajar"
-              type: "jumbotron"
-              text: "Trabajo para todos"
-              button_title: "Asociarme"
-              button_route: register_associate
-            -
-              name: "home_jumbotron"
-              class: "col-md-6"
-              title: "Necesito Apoyo"
-              type: "jumbotron"
-              text: "Si necesitas que te ayuden con algo"
-              button_title: "Solicitar"
-              button_route: register_user
-        -
-          name: "login"
-          template: "login"
-        -
-          name: "register"
-          template: "register"
-        -
-          name: "verify_email"
-          template: "verify_email"
+        - name: login
+          template: login
+
+        - name: register
+          template: register
+
+        - name: verify_email
+          template: verify_email
           route_params:
-            - "verifyEmailToken"
-        -
-          name: "forgot_password"
-          template: "forgot_password"
-        -
-          name: "reset_password"
-          template: "reset_password"
+            - verifyEmailToken
+
+        - name: forgot_password
+          template: forgot_password
+
+        - name: reset_password
+          template: reset_password
           route_params:
-            - "resetPasswordToken"
-        -
-          name: "contact"
-          title: "Aitia Contact"
-          components:
-            -
-              name: "div_lorem"
-              type: "div"
-              class: "row"
-              components:
-                -
-                  name: "div_lorem1"
-                  type: "div"
-                  class: "col-md-4"
-                  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium molestias et laboriosam atque, reprehenderit ipsa, laborum accusamus consectetur ut quo, totam recusandae, animi temporibus dolor repudiandae iste tempore in corrupti?"
-                -
-                  name: "div_lorem2"
-                  type: "div"
-                  class: "col-md-4"
-                  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium molestias et laboriosam atque, reprehenderit ipsa, laborum accusamus consectetur ut quo, totam recusandae, animi temporibus dolor repudiandae iste tempore in corrupti?"
-                -
-                  name: "div_lorem3"
-                  type: "div"
-                  class: "col-md-4"
-                  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium molestias et laboriosam atque, reprehenderit ipsa, laborum accusamus consectetur ut quo, totam recusandae, animi temporibus dolor repudiandae iste tempore in corrupti?"
+            - resetPasswordToken
+
       menus:
-        -
-          name: "left_menu"
+        - name: "left_menu"
           class: "nav navbar-nav"
           dest_selector: "#menu"
           items:
             -
               title: "Como funciona"
               route: "home_public"
-        -
-          name: "right_menu"
+        - name: "right_menu"
           class: "nav navbar-nav navbar-right"
           dest_selector: "#menu"
           items:
@@ -223,8 +191,7 @@
               route: "login"
     private_zone:
       pages:
-        -
-          name: home_private
+        - name: dashboard
           type: jumbotron
           title: ¿Que quieres hacer?
           components:
@@ -241,18 +208,15 @@
               class: col-md-6
               text: Pedir Ayuda
               button_title: Pedir ayuda
-              button_route: post_job
-        -
-          name: register_associate
+              button_route: post_need
+        - name: register_associate
           components:
-            -
-              name: intro_associate
+            - name: intro_associate
               type: jumbotron
               title: Asociate
               class: col-md-6
               text: Nosotros nos encargamos de conectarte con tus clientes antes que nadie
-            -
-              name: "ask_for_help"
+            - name: "ask_for_help"
               title: Forma de solicitud
               type: "form"
               class: col-md-6
@@ -263,56 +227,36 @@
                 filter: {}
               submit_route: "associates"
               cancel_route: "home_private"
-        -
-          name: associates
-          #roles:
-          #  - admin
+        - name: post_need
           components:
-            - name: view
-              type: data_view
-              title: Nuestros Mejores Asociados
-              text_if_empty: '0 socios'
+            -
+              name: intro_needs
+              type: jumbotron
+              title: Pide Ayuda
+              class: col-md-6
+              text: Todo lo que necesitas, lo más pronto posible
+            -
+              name: "ask_for_help"
+              title: ¿Que necesitas en este momento?
+              type: "form"
+              class: col-md-6
+              mode: "insert"
               query:
-                name: associates
-                collection: associates
+                name: "needs"
+                collection: "needs"
                 filter: {}
-              insert_route: register_associate
-              edit_route: associates.edit
-              edit_route_params:
-                - name: associateId
-                  value: this._id
-              details_route: associates.details
-              details_route_params:
-                - name: associateId
-                  value: this._id
-        - name: users
+              submit_route: where
+              cancel_route: dashboard
+        - name: where
+          title: Ubícate en el mapa
+          type: jumbotron
+          text: "{{> googleMap}}"
           components:
-            - name: view
-              type: data_view
-              title: Users
-              text_if_empty: No users yet
-              query:
-                name: admin_users
-                collection: users
-                filter: {}
-              fields:
-                - name: profile.name
-                  title: Name
-                - name: profile.email
-                  title: E-mail
-                - name: roles
-                  title: Role
-              insert_route: register
-              edit_route: admin.users.edit
-              edit_route_params:
-                - name: userId
-                  value: this._id
-              details_route: admin.users.details
-              details_route_params:
-                - name: userId
-                  value: this._id
-        -
-          name: thanks_associate
+            - name: google_map
+              type: custom_component
+              html: "{{> googleMap name='exampleMap' }}"
+
+        - name: thanks_associate
           title: Gracias por Registrarte
           type: jumbotron
           text: Nosotros nos pondremos en contacto contigo para agendar nuestra orientación
