@@ -265,8 +265,7 @@
           roles:
             - "admin"
           pages:
-            -
-              name: "users"
+            - name: "users"
               components:
                 -
                   name: "view"
