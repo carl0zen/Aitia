@@ -12,6 +12,22 @@ Template.RegisterAssociate.helpers({
 	
 });
 
+Template.RegisterAssociateIntroAssociate.rendered = function() {
+	
+};
+
+Template.RegisterAssociateIntroAssociate.events({
+	"click #jumbotron-button": function(e, t) {
+		e.preventDefault();
+		Router.go("", {});
+	}
+	
+});
+
+Template.RegisterAssociateIntroAssociate.helpers({
+	
+});
+
 Template.RegisterAssociateAskForHelp.rendered = function() {
 	
 
@@ -67,7 +83,7 @@ Template.RegisterAssociateAskForHelp.events({
 				}
 			}
 
-			Router.go("thanks_associate", {});
+			Router.go("associates", {});
 		}
 
 		function errorAction(msg) {
@@ -97,7 +113,7 @@ Template.RegisterAssociateAskForHelp.events({
 
 		
 
-		Router.go("home_public", {});
+		Router.go("home_private", {});
 	},
 	"click #form-close-button": function(e, t) {
 		e.preventDefault();

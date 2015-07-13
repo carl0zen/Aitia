@@ -9,11 +9,7 @@
       - "admin"
       - "user"
       - "associate"
-    default_role: "guest"
-    send_verification_email: true
-    footer_text: "@ Aitia 2015"
-    login_with_password: true
-    login_with_facebook: true
+    default_role: user
     collections:
       -
         name: "associates"
@@ -48,6 +44,21 @@
             type: "email"
             required: true
             exportable: true
+          -
+            name: skills
+            title: Habilidades
+            required: true
+            exportable: true
+            input: checkbox
+            input_items:
+              - Electricista
+              - Plomero
+              - Albañil
+              - Ayudante Personal
+              - Limpieza
+              - Investigación
+              - Diseño
+              - Consultoría
           -
             name: "sex"
             title: "Sexo"
@@ -101,12 +112,12 @@
           name: "home_public"
           components:
             -
-              name: "ask_for_help"
-              title: "¿Quieres trabajar?"
-              type: "jumbotron"
-              text: "Trabajo para todos"
-              button_title: "Solicita Acceso"
-              button_route: register
+              name: ask_for_help
+              title: Todos los servicios a domicilio
+              type: jumbotron
+              text: Recibe la ayuda que necesitas en donde quiera que estes
+              button_title: Solicita Acceso
+              button_route: login
             -
               name: "how_it_works"
               type: "div"
@@ -141,7 +152,7 @@
               type: "jumbotron"
               text: "Trabajo para todos"
               button_title: "Asociarme"
-              button_route: "register_associate"
+              button_route: register_associate
             -
               name: "home_jumbotron"
               class: "col-md-6"
@@ -149,26 +160,7 @@
               type: "jumbotron"
               text: "Si necesitas que te ayuden con algo"
               button_title: "Solicitar"
-              button_route: "register_user"
-        -
-          name: "register_associate"
-          components:
-            -
-              name: "ask_for_help"
-              title: Registro de Asociado
-              type: "form"
-              mode: "insert"
-              query:
-                name: "associate"
-                collection: "associates"
-                filter: {}
-              submit_route: "thanks_associate"
-              cancel_route: "home_public"
-        -
-          name: thanks_associate
-          title: Gracias por Registrarte
-          type: jumbotron
-          text: Nosotros nos pondremos en contacto contigo para agendar nuestra orientación
+              button_route: register_user
         -
           name: "login"
           template: "login"
@@ -227,16 +219,103 @@
           dest_selector: "#menu"
           items:
             -
-              title: "Suscríbete"
-              route: "register"
-            -
-              title: "Login"
+              title: "Solicita Acceso"
               route: "login"
     private_zone:
       pages:
         -
-          name: "home_private"
-          title: "Welcome {{userFullName}}!"
+          name: home_private
+          type: jumbotron
+          title: ¿Que quieres hacer?
+          components:
+            -
+              name: ask_for_work
+              type: jumbotron
+              class: col-md-6
+              text: Quiero Trabajar
+              button_title: Trabajar
+              button_route: register_associate
+            -
+              name: ask_for_help
+              type: jumbotron
+              class: col-md-6
+              text: Pedir Ayuda
+              button_title: Pedir ayuda
+              button_route: post_job
+        -
+          name: register_associate
+          components:
+            -
+              name: intro_associate
+              type: jumbotron
+              title: Asociate
+              class: col-md-6
+              text: Nosotros nos encargamos de conectarte con tus clientes antes que nadie
+            -
+              name: "ask_for_help"
+              title: Forma de solicitud
+              type: "form"
+              class: col-md-6
+              mode: "insert"
+              query:
+                name: "associate"
+                collection: "associates"
+                filter: {}
+              submit_route: "associates"
+              cancel_route: "home_private"
+        -
+          name: associates
+          #roles:
+          #  - admin
+          components:
+            - name: view
+              type: data_view
+              title: Nuestros Mejores Asociados
+              text_if_empty: '0 socios'
+              query:
+                name: associates
+                collection: associates
+                filter: {}
+              insert_route: register_associate
+              edit_route: associates.edit
+              edit_route_params:
+                - name: associateId
+                  value: this._id
+              details_route: associates.details
+              details_route_params:
+                - name: associateId
+                  value: this._id
+        - name: users
+          components:
+            - name: view
+              type: data_view
+              title: Users
+              text_if_empty: No users yet
+              query:
+                name: admin_users
+                collection: users
+                filter: {}
+              fields:
+                - name: profile.name
+                  title: Name
+                - name: profile.email
+                  title: E-mail
+                - name: roles
+                  title: Role
+              insert_route: register
+              edit_route: admin.users.edit
+              edit_route_params:
+                - name: userId
+                  value: this._id
+              details_route: admin.users.details
+              details_route_params:
+                - name: userId
+                  value: this._id
+        -
+          name: thanks_associate
+          title: Gracias por Registrarte
+          type: jumbotron
+          text: Nosotros nos pondremos en contacto contigo para agendar nuestra orientación
         -
           name: "admin"
           roles:
@@ -427,6 +506,40 @@
                     -
                       name: "profile.website"
                       title: "Website URL"
+                -
+                  name: "edit_form"
+                  type: "data_view"
+                  mode: "update"
+                  title: "Edit your profile"
+                  submit_route: "user_settings.profile"
+                  query:
+                    name: "current_user_data"
+                    collection: "users"
+                    filter:
+                      _id: "Meteor.userId()"
+                    find_one: true
+                  fields:
+                    -
+                      name: "profile.name"
+                      title: "Name"
+                      required: true
+                    -
+                      name: "profile.email"
+                      title: "E-mail"
+                      type: "email"
+                      required: true
+                    -
+                      name: "profile.facebook"
+                      title: "Facebook URL"
+                    -
+                      name: "profile.google"
+                      title: "Google+ URL"
+                    -
+                      name: "profile.twitter"
+                      title: "Twitter ID"
+                    -
+                      name: "profile.website"
+                      title: "Website URL"
             -
               name: "change_pass"
               template: "change_pass"
@@ -451,8 +564,14 @@
           dest_selector: "#menu"
           items:
             -
-              title: "Home"
-              route: "home_private"
+              title: Home
+              route: home_private
+            -
+              title: Asociados
+              route: associates
+            -
+              title: Users
+              route: users
         -
           name: "right_menu"
           class: "nav navbar-nav navbar-right"
@@ -462,7 +581,11 @@
               title: "Admin"
               route: "admin"
             -
-              title: "{{userEmail}}"
+              name: avatar
+              type: div
+              class: .item-title
+            -
+              title: "{{userFullName}} <img src='http://placehold.it/30x30' />"
               items:
                 -
                   title: "Settings"
@@ -470,3 +593,11 @@
                 -
                   title: "Logout"
                   route: "logout"
+    send_verification_email: true
+    footer_text: © Aitia 2015
+    login_with_password: true
+    login_with_facebook: true
+    packages:
+      meteor:
+        - "dburles:google-maps"
+        - "utilities:avatar"

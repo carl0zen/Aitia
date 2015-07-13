@@ -6,14 +6,27 @@
 				</div>
 			</div>
 		</div>
-		{{> RegisterAssociateAskForHelp}}
+		{{> RegisterAssociateIntroAssociate}}{{> RegisterAssociateAskForHelp}}
+	</div>
+</template>
+
+<template name="RegisterAssociateIntroAssociate">
+	<div class="jumbotron col-md-6">
+		<div id="content" class="container">
+			<h1 id="component-title">
+				Asociate
+			</h1>
+			<p id="jumbotron-text">
+				Nosotros nos encargamos de conectarte con tus clientes antes que nadie
+			</p>
+		</div>
 	</div>
 </template>
 
 <template name="RegisterAssociateAskForHelp">
-	<div class="">
+	<div class="col-md-6">
 		<h2 id="component-title">
-			Registro de Asociado
+			Forma de solicitud
 		</h2>
 		<form id="form" role="form">
 			{{#if errorMessage}}
@@ -69,6 +82,77 @@
 				</label>
 				<div class="input-div">
 					<input type="text" name="email" value="" class="form-control" required="required" data-type="email">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-name">
+				<label for="name">
+					Nombre
+				</label>
+				<div class="input-div">
+					<input type="text" name="name" value="" class="form-control" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-skills">
+				<label for="skills">
+					Habilidades
+				</label>
+				<div class="input-div" data-required="true">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Electricista" name="skills">
+							Electricista
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Plomero" name="skills">
+							Plomero
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Albañil" name="skills">
+							Albañil
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Ayudante Personal" name="skills">
+							Ayudante Personal
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Limpieza" name="skills">
+							Limpieza
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Investigación" name="skills">
+							Investigación
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Diseño" name="skills">
+							Diseño
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="Consultoría" name="skills">
+							Consultoría
+						</label>
+					</div>
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">

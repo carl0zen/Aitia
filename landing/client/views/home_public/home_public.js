@@ -17,7 +17,7 @@ Template.HomePublicAskForHelp.rendered = function() {
 Template.HomePublicAskForHelp.events({
 	"click #jumbotron-button": function(e, t) {
 		e.preventDefault();
-		Router.go("register", {});
+		Router.go("login", {});
 	}
 	
 });
